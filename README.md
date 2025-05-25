@@ -123,7 +123,7 @@ public struct ImageComponent: CommonComponent {
 
 - `imageURL`: If it’s a valid URL, renders with `AsyncImage`. Otherwise, uses asset name to render `Image`
 
-### SpacerComponent : SwiftUI의 Spacer 렌더링
+### SpacerComponent : Renders as SwiftUI `Spacer`
 
 ``` swift
 public struct SpacerComponent: CommonComponent {
