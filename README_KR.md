@@ -1,13 +1,11 @@
 #  SDUI(Server Driven - UI)
 
-- Launguage : [🇰🇷](./README_KR.md)
+JSON을 Decoding 하여 각 type별 SwiftUI의 View로 렌더링
 
-Renders SwiftUI views by decoding JSON into view components based on their types.
-
-## Basic Flow
-1. Decode `SDUIScene`
-2. Define layout using `SDUIScene` → `SDUIContainer` → `SDUILayout` and include an array of `SDUIView`s
-3. Use the `render` function to convert into SwiftUI Views
+## 기본 작동방식
+1. SDUIScene을 Decoding
+2. SDUIScene -> SDUIContainer -> SDUILayout으로 Layout 정의 후 내부 SDUIView 배열 정의
+3. render 함수를 통해 SwiftUI View로 변환 
 
 ## Scene
 
@@ -22,8 +20,8 @@ public struct SDUIScene: Codable, Identifiable {
     
 ```
 
-- `hasNavigationBar`: Indicates whether to show a navigation bar
-- `container`: Top-level container view
+- `hasNavigationBar` : 네비게이션바 활성화 여부
+- `container` : 최상단 컨테이너
 
 
 ## Layout 
@@ -37,15 +35,15 @@ public struct SDUILayout: Codable {
     ...
 ```
 
-- `type`: Renders `HStack`, `VStack`, or `ZStack` based on `h`, `v`, or `z`. For `lh` or `lv`, it renders `LazyHStack` or `LazyVStack`
-- `spacing`: Spacing between views
-- `alignment`: Alignment direction
+- `type` : `h`, `v`, `z`에 따라서 `HStack`, `VStack`, `ZStack` 렌더링, `lh`, `lv`에 따라서 `LazyHStack`, `LazyVStack` 렌더링
+- `spacing` : spacing 값 지정
+- `alignment` : 정렬방향 지정
 
-## Component Types
+## Component 종류
 
-### CommonComponent : Defines shared SwiftUI view modifiers
+### CommonComponent : SwiftUI의 View의 공통 수정자들을 정의한 component
 
-All components conform to this protocol.
+모든 Component는 해당 프로토콜을 채택하여 구현
 
 ```swift
     public protocol CommonComponent: Codable {
@@ -60,17 +58,17 @@ All components conform to this protocol.
     }
 ```
 
-- `componentId`: Unique identifier for the component
-- `padding`: Applies padding with specified edges and spacing
-- `frame`: Applies width/height-style frame modifiers
-- `extreamFrame`: Applies minWidth/minHeight-style frame modifiers
-- `foregroundColor`: Applies `foregroundStyle` modifier
-- `backgroundColor`: Applies `background` modifier
-- `cornerRadius`: Applies corner radius
-- `overlay`: Applies overlay modifier
+- `componentId` : component 고유명
+- `padding` : padding 수정자를 배열로 적용, edge와 spacing을 전달  
+- `frame` : frame 수정자 중 width, height ~ 형식에 적용
+- `extreamFrame` : frame 수정자 중 minWidth ~ 형식에 적용
+- `foregroundColor` : `foregroundStyle` 수정자 적용
+- `backgroundColor` : `background` 수정자 적용
+- `cornerRadius` : `cornerRadius` 수정자 적용
+- `overlay` : `overlay` 수정자 적용
 
 
-### TextComponent : Renders as SwiftUI `Text`
+### TextComponent : SwiftUI의 Text로 렌더링
 
 ``` swift
 public struct TextComponent: CommonComponent {
@@ -84,11 +82,11 @@ public struct TextComponent: CommonComponent {
     ...
 ```
 
-- `text`: The string to display
-- `font`: Applies font modifiers
-- `lineLimit`: Maximum number of lines
+- `text` : 텍스트에 들어갈 내용
+- `font` : 텍스트 `font` 수정자 적용 
+- `lineLimit` : 라인 수 `lineLimit` 수정자 적용
 
-### ButtonComponent : Renders as SwiftUI `Button`
+### ButtonComponent : SwiftUI의 Button 렌더링
 
 ``` swift
 public struct ButtonComponent: CommonComponent {
@@ -103,12 +101,11 @@ public struct ButtonComponent: CommonComponent {
 
 ```
 
-- `text`: Used when rendering a simple text-based button
-- `action`: Action handler if defined
-- `customViews`: Used for custom button content
+- `text` : 텍스트로만 구성된 버튼 사용시 적용
+- `action` : action이 있는 경우 핸들러를 삽입 
+- `customViews` : 커스텀버튼을 사용하는 경우 삽입
 
-
-### ImageComponent : Renders as SwiftUI `Image` or `AsyncImage`
+### ImageComponent : SwiftUI의 Image, AsyncImage 렌더링
 
 ``` swift
 public struct ImageComponent: CommonComponent {
@@ -121,7 +118,7 @@ public struct ImageComponent: CommonComponent {
 
 ```
 
-- `imageURL`: If it’s a valid URL, renders with `AsyncImage`. Otherwise, uses asset name to render `Image`
+- `imageURL` : imageURL이 URL 형식인 경우 AsyncImage로 렌더링, 아닌 경우 asset의 저장된 이름 매칭하여 Image로 렌더링
 
 ### SpacerComponent : SwiftUI의 Spacer 렌더링
 
@@ -133,7 +130,7 @@ public struct SpacerComponent: CommonComponent {
 
 ```
 
-### RectangleComponent : Renders as SwiftUI `Rectangle`
+### RectangleComponent : SwiftUI의 Rectangle 렌더링
 
 ``` swift
 public struct RectangleComponent: CommonComponent {
@@ -143,7 +140,7 @@ public struct RectangleComponent: CommonComponent {
 
 ```
 
-### RoundedRectangleComponent : Renders as SwiftUI `RoundedRectangle`
+### RoundedRectangleComponent : SwiftUI의 RoundedRectangle 렌더링
 
 ``` swift
 public struct RoundedRectangleComponent: CommonComponent {
@@ -155,9 +152,9 @@ public struct RoundedRectangleComponent: CommonComponent {
     ...
 ```
 
-- `strokeComponent`: Applies stroke color and line width
+- `strokeComponent`: storke 수정자의 색상과 라인너비를 적용
 
-### ScrollComponent : Renders as SwiftUI `ScrollView`
+### ScrollComponent : SwiftUI의 Spacer 렌더링
 
 ``` swift
 public struct ScrollComponent: CommonComponent {
@@ -172,12 +169,11 @@ public struct ScrollComponent: CommonComponent {
 
 ```
 
-- `axis`: Scroll direction (horizontal or vertical)
-- `showIndicator`: Whether to show scroll indicators
-- `containerViews`: Views contained within the scroll view
+- `axis` : 스크롤의 방향 지정
+- `showIndicator` : 인디케이터 표시 활성여부
+- `containerViews` : 내부 들어갈 View 배열
 
-
-### CustomComponent : Renders as SwiftUI `EmptyView`
+### CustomComponent : SwiftUI의 EmptyView 렌더링
 
 ``` swift
 public struct CustomComponent: CommonComponent {
@@ -187,7 +183,7 @@ public struct CustomComponent: CommonComponent {
 
 ```
 
-### SDUIConatiner : A container view for nested layout and views
+### SDUIConatiner : SwiftUI의 담고 있는 컨테이너 (별도)
 
 ``` swift
 public struct SDUIContainer: CommonComponent {
@@ -200,13 +196,11 @@ public struct SDUIContainer: CommonComponent {
     ...
 ```
 
-- `layout`: Defines layout structure
-- `views`: Array of views inside the layout
+- `layout` : 레이아웃을 지정 
+- `views` : 레이아웃 내부에 들어갈 View 배열
 
 
-
-## Example JSON Format
-
+## JSON 형식 예제
 ```json
 {
     "hasNavigationBar": false,
@@ -233,7 +227,7 @@ public struct SDUIContainer: CommonComponent {
                 "type": "text",
                 "component": {
                     "componentId": "trending-title",
-                    "text": "Hot Contents",
+                    "text": "지금 뜨는 콘텐츠",
                     "font": {
                         "fontName": "Pretendard-Bold",
                         "fontSize": 20
@@ -299,7 +293,7 @@ public struct SDUIContainer: CommonComponent {
                 "type": "text",
                 "component": {
                     "componentId": "trending-title",
-                    "text": "Hot Contents",
+                    "text": "지금 뜨는 콘텐츠",
                     "font": {
                         "fontName": "Pretendard-Bold",
                         "fontSize": 20
@@ -365,7 +359,7 @@ public struct SDUIContainer: CommonComponent {
                 "type": "text",
                 "component": {
                     "componentId": "trending-title",
-                    "text": "Hot Contents",
+                    "text": "지금 뜨는 콘텐츠",
                     "font": {
                         "fontName": "Pretendard-Bold",
                         "fontSize": 20
@@ -431,7 +425,7 @@ public struct SDUIContainer: CommonComponent {
                 "type": "text",
                 "component": {
                     "componentId": "trending-title",
-                    "text": "Hot Contents",
+                    "text": "지금 뜨는 콘텐츠",
                     "font": {
                         "fontName": "Pretendard-Bold",
                         "fontSize": 20
