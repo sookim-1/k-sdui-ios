@@ -1,0 +1,110 @@
+{
+    "hasNavigationBar": false,
+    "container": {
+        "componentId": "mainContainer",
+        "layout": {
+            "type": "v",
+            "alignment": "leading",
+            "spacing": 0
+        },
+        "views": [
+            {
+                "type": "scroll",
+                "component": {
+                    "componentId": "scroll-trending",
+                    "axis": "v",
+                    "showIndicator": false,
+                    "containerViews": {
+                        "type": "container",
+                        "component": {
+                            "componentId": "scroll-trending-inner",
+                            "layout": {
+                                "type": "v",
+                                "alignment": "top",
+                                "spacing": 12
+                            },
+                            "views": [
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color1",
+                                    "foregroundColor": "#FF0000",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color2",
+                                    "foregroundColor": "#FFA500",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color3",
+                                    "foregroundColor": "#FFFF00",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color4",
+                                    "foregroundColor": "#008000",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color5",
+                                    "foregroundColor": "#0000FF",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color6",
+                                    "foregroundColor": "#000080",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color7",
+                                    "foregroundColor": "#800080",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color8",
+                                    "foregroundColor": "#000000",
+                                    "extreamFrame": {
+                                        "maxWidth": "infinity",
+                                        "idealHeight": 200
+                                    },
+                                    "cornerRadius": 8
+                                }}
+                            ]
+                        }
+                    },
+                    "padding": [
+                        { "edge": "horizontal", "spacing": 16 },
+                        { "edge": "vertical", "spacing": 0 }
+                    ]
+                }
+            }
+        ]
+    }
+}

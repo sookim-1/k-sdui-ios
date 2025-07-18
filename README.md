@@ -1,15 +1,45 @@
-#  SDUI(Server Driven - UI)
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-red.svg" alt="MIT">
+</a>
+<a href="https://github.com/MessageKit/MessageKit/issues">
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions Welcome">
+</a>
 
 - Launguage : [🇰🇷](./README_KR.md)
 
+`k-sdui-ios` is a library that helps you easily implement Server-Driven UI in SwiftUI.
 Renders SwiftUI views by decoding JSON into view components based on their types.
 
-## Basic Flow
+![logo](./docs_asset/logo.png)
+
+## ⚡️ Features
+
+- [X] CommonComponent : Defines shared SwiftUI view modifiers
+- [X] TextComponent : Renders as SwiftUI `Text`
+- [X] ButtonComponent : Renders as SwiftUI `Button`
+- [X] ImageComponent : Renders as SwiftUI `Image` or `AsyncImage`
+- [X] SpacerComponent : Renders as SwiftUI `Spacer`
+- [X] RectangleComponent : Renders as SwiftUI `Rectangle`
+- [X] RoundedRectangleComponent : Renders as SwiftUI `RoundedRectangle`
+- [X] ScrollComponent : Renders as SwiftUI `ScrollView`
+- [X] CustomComponent : Renders as SwiftUI `EmptyView`
+- [X] Layout : Renders as SwiftUI `HStack`, `VStack`, `ZStack`, `LazyHStack`, `LazyVStack`
+
+
+## 🌈 Quick
+
+This code demonstrates how to load and inspect the structure of each JSON file located in the `Example` directory.
+
+![SampleGif](./docs_asset/sample.gif)
+
+
+## 👷‍♂️ Basic Flow
+
 1. Decode `SDUIScene`
 2. Define layout using `SDUIScene` → `SDUIContainer` → `SDUILayout` and include an array of `SDUIView`s
 3. Use the `render` function to convert into SwiftUI Views
 
-## Scene
+### Scene
 
 ```swift
 public struct SDUIScene: Codable, Identifiable {
@@ -26,7 +56,7 @@ public struct SDUIScene: Codable, Identifiable {
 - `container`: Top-level container view
 
 
-## Layout 
+### Layout 
 
 ```swift
 public struct SDUILayout: Codable {
@@ -41,7 +71,7 @@ public struct SDUILayout: Codable {
 - `spacing`: Spacing between views
 - `alignment`: Alignment direction
 
-## Component Types
+## 🧱 Component Types
 
 ### CommonComponent : Defines shared SwiftUI view modifiers
 
@@ -202,299 +232,3 @@ public struct SDUIContainer: CommonComponent {
 
 - `layout`: Defines layout structure
 - `views`: Array of views inside the layout
-
-
-
-## Example JSON Format
-
-```json
-{
-    "hasNavigationBar": false,
-    "container": {
-        "componentId": "mainContainer",
-        "layout": {
-            "type": "v",
-            "alignment": "leading",
-            "spacing": 24
-        },
-        "views": [
-            {
-                "type": "image",
-                "component": {
-                    "componentId": "featured-banner",
-                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                    "extreamFrame": {
-                        "maxWidth": "infinity",
-                        "maxHeight": 400
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "Hot Contents",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "Hot Contents",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "Hot Contents",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "Hot Contents",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-        ]
-    }
-}
-
-```

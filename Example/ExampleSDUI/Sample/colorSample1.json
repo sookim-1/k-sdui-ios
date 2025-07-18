@@ -1,0 +1,200 @@
+{
+    "hasNavigationBar": false,
+    "container": {
+        "componentId": "mainContainer",
+        "layout": {
+            "type": "v",
+            "alignment": "leading",
+            "spacing": 8
+        },
+        "views": [
+            {
+                "type": "rectangle",
+                "component": {
+                    "componentId": "banner-color",
+                    "foregroundColor": "#FF0000",
+                    "extreamFrame": {
+                        "maxWidth": "infinity",
+                        "idealHeight": 400
+                    }
+                }
+            },
+            {
+                "type": "text",
+                "component": {
+                    "componentId": "first-title",
+                    "text": "First",
+                    "font": {
+                        "fontName": "Pretendard-Bold",
+                        "fontSize": 20
+                    },
+                    "padding": [
+                        { "edge": "horizontal", "spacing": 16 },
+                        { "edge": "vertical", "spacing": 20 }
+                    ]
+                }
+            },
+            {
+                "type": "scroll",
+                "component": {
+                    "componentId": "scroll-trending",
+                    "axis": "h",
+                    "showIndicator": false,
+                    "containerViews": {
+                        "type": "container",
+                        "component": {
+                            "componentId": "scroll-trending-inner",
+                            "layout": {
+                                "type": "h",
+                                "alignment": "top",
+                                "spacing": 12
+                            },
+                            "views": [
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color1",
+                                    "foregroundColor": "#FF0000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color2",
+                                    "foregroundColor": "#FFA500",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color3",
+                                    "foregroundColor": "#FFFF00",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color4",
+                                    "foregroundColor": "#008000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color5",
+                                    "foregroundColor": "#0000FF",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color6",
+                                    "foregroundColor": "#000080",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color7",
+                                    "foregroundColor": "#800080",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color8",
+                                    "foregroundColor": "#000000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }}
+                            ]
+                        }
+                    },
+                    "padding": [
+                        { "edge": "horizontal", "spacing": 16 },
+                        { "edge": "vertical", "spacing": 0 }
+                    ]
+                }
+            },
+            {
+                "type": "text",
+                "component": {
+                    "componentId": "second-title",
+                    "text": "Second",
+                    "font": {
+                        "fontName": "Pretendard-Bold",
+                        "fontSize": 20
+                    },
+                    "padding": [
+                        { "edge": "horizontal", "spacing": 16 },
+                        { "edge": "vertical", "spacing": 20 }
+                    ]
+                }
+            },
+            {
+                "type": "scroll",
+                "component": {
+                    "componentId": "scroll-trending",
+                    "axis": "h",
+                    "showIndicator": false,
+                    "containerViews": {
+                        "type": "container",
+                        "component": {
+                            "componentId": "scroll-trending-inner",
+                            "layout": {
+                                "type": "h",
+                                "alignment": "top",
+                                "spacing": 12
+                            },
+                            "views": [
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color1",
+                                    "foregroundColor": "#FF0000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color2",
+                                    "foregroundColor": "#FFA500",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color3",
+                                    "foregroundColor": "#FFFF00",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color4",
+                                    "foregroundColor": "#008000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color5",
+                                    "foregroundColor": "#0000FF",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color6",
+                                    "foregroundColor": "#000080",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color7",
+                                    "foregroundColor": "#800080",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }},
+                                { "type": "rectangle", "component": {
+                                    "componentId": "color8",
+                                    "foregroundColor": "#000000",
+                                    "frame": { "width": 120, "height": 180 },
+                                    "cornerRadius": 8
+                                }}
+                            ]
+                        }
+                    },
+                    "padding": [
+                        { "edge": "horizontal", "spacing": 16 },
+                        { "edge": "vertical", "spacing": 0 }
+                    ]
+                }
+            }
+        ]
+    }
+}

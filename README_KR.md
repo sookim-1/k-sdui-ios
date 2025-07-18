@@ -1,13 +1,42 @@
-#  SDUI(Server Driven - UI)
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-red.svg" alt="MIT">
+</a>
+<a href="https://github.com/MessageKit/MessageKit/issues">
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="Contributions Welcome">
+</a>
 
-JSON을 Decoding 하여 각 type별 SwiftUI의 View로 렌더링
+`k-sdui-ios`는 SwiftUI에서 Server-Driven UI를 손쉽게 구현하도록 도와주는 라이브러리입니다.
+JSON을 디코딩하여 SwiftUI의 적절한 Type으로 렌더링합니다.
 
-## 기본 작동방식
+![logo](./docs_asset/logo.png)
+
+## ⚡️ Features
+
+- [X] CommonComponent : SwiftUI의 View의 공통 수정자들을 정의한 component
+- [X] TextComponent : SwiftUI의 Text로 렌더링
+- [X] ButtonComponent : SwiftUI의 Button 렌더링
+- [X] ImageComponent : SwiftUI의 Image, AsyncImage 렌더링
+- [X] SpacerComponent : SwiftUI의 Spacer 렌더링
+- [X] RectangleComponent : SwiftUI의 Rectangle 렌더링
+- [X] RoundedRectangleComponent : SwiftUI의 RoundedRectangle 렌더링
+- [X] ScrollComponent : SwiftUI의 `ScrollView` 렌더링
+- [X] CustomComponent : SwiftUI의 EmptyView 렌더링
+- [X] Layout : Renders as SwiftUI `HStack`, `VStack`, `ZStack`, `LazyHStack`, `LazyVStack`
+
+
+## 🌈 Quick
+
+`Example` 폴더로 이동하여 예제 프로젝트에서 JSON의 형식을 참고하세요.
+
+![SampleGif](./docs_asset/sample.gif)
+
+## 👷‍♂️ 기본 작동방식
+
 1. SDUIScene을 Decoding
 2. SDUIScene -> SDUIContainer -> SDUILayout으로 Layout 정의 후 내부 SDUIView 배열 정의
 3. render 함수를 통해 SwiftUI View로 변환 
 
-## Scene
+### Scene
 
 ```swift
 public struct SDUIScene: Codable, Identifiable {
@@ -24,7 +53,7 @@ public struct SDUIScene: Codable, Identifiable {
 - `container` : 최상단 컨테이너
 
 
-## Layout 
+### Layout 
 
 ```swift
 public struct SDUILayout: Codable {
@@ -39,7 +68,7 @@ public struct SDUILayout: Codable {
 - `spacing` : spacing 값 지정
 - `alignment` : 정렬방향 지정
 
-## Component 종류
+## 🧱 Component 종류
 
 ### CommonComponent : SwiftUI의 View의 공통 수정자들을 정의한 component
 
@@ -154,7 +183,7 @@ public struct RoundedRectangleComponent: CommonComponent {
 
 - `strokeComponent`: storke 수정자의 색상과 라인너비를 적용
 
-### ScrollComponent : SwiftUI의 Spacer 렌더링
+### ScrollComponent : SwiftUI의 `ScrollView` 렌더링
 
 ``` swift
 public struct ScrollComponent: CommonComponent {
@@ -198,297 +227,3 @@ public struct SDUIContainer: CommonComponent {
 
 - `layout` : 레이아웃을 지정 
 - `views` : 레이아웃 내부에 들어갈 View 배열
-
-
-## JSON 형식 예제
-```json
-{
-    "hasNavigationBar": false,
-    "container": {
-        "componentId": "mainContainer",
-        "layout": {
-            "type": "v",
-            "alignment": "leading",
-            "spacing": 24
-        },
-        "views": [
-            {
-                "type": "image",
-                "component": {
-                    "componentId": "featured-banner",
-                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                    "extreamFrame": {
-                        "maxWidth": "infinity",
-                        "maxHeight": 400
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "지금 뜨는 콘텐츠",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "지금 뜨는 콘텐츠",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "지금 뜨는 콘텐츠",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "component": {
-                    "componentId": "trending-title",
-                    "text": "지금 뜨는 콘텐츠",
-                    "font": {
-                        "fontName": "Pretendard-Bold",
-                        "fontSize": 20
-                    },
-                    "padding": [
-                        { "edge": "leading", "spacing": 16 },
-                        { "edge": "trailing", "spacing": 16 }
-                    ]
-                }
-            },
-            {
-                "type": "scroll",
-                "component": {
-                    "componentId": "scroll-trending",
-                    "axis": "h",
-                    "showIndicator": false,
-                    "containerViews": {
-                        "type": "container",
-                        "component": {
-                            "componentId": "scroll-trending-inner",
-                            "layout": {
-                                "type": "h",
-                                "alignment": "top",
-                                "spacing": 12
-                            },
-                            "views": [
-                                { "type": "image", "component": {
-                                    "componentId": "trend1",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend2",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend3",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend4",
-                                    "imageURL": "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }},
-                                { "type": "image", "component": {
-                                    "componentId": "trend5",
-                                    "imageURL": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=500&q=80",
-                                    "frame": { "width": 120, "height": 180 },
-                                    "cornerRadius": 8
-                                }}
-                            ]
-                        }
-                    }
-                }
-            },
-        ]
-    }
-}
-
-```
